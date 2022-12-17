@@ -10,4 +10,3 @@ def record_processing(inner_list: [str]) -> list[dict[str, str]]:
         else:
             break
     return list_data
-

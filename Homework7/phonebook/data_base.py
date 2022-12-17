@@ -1,4 +1,11 @@
+import csv
+
 file_path = r'phonebook.txt'
+
+
+def write_csv(first_name, last_name, telephone) -> None:
+    with open(file_path, 'a', newline='') as csvfile:
+        csv.writer(csvfile).writerow([first_name, last_name, telephone])
 
 
 def write_data(first_name, last_name, telephone) -> None:
@@ -7,7 +14,7 @@ def write_data(first_name, last_name, telephone) -> None:
         f.write(instance)
 
 
-def read_data() -> list[str]:
+def read_data() -> list[list[str]]:
     with open(file_path, 'r') as f:
-        list_string: list[str] = f.read().split('\n')
+        list_string: list[list[str]] = [i.split(',') for i in f.read().split('\n') if i]
         return list_string
