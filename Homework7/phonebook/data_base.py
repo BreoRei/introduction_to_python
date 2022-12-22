@@ -3,15 +3,24 @@ import csv
 file_path = r'phonebook.txt'
 
 
-def write_csv(first_name, last_name, telephone) -> None:
+def write_csv(contact_list: list[str]) -> None:
     with open(file_path, 'a', newline='') as csvfile:
-        csv.writer(csvfile).writerow([first_name, last_name, telephone])
+        csv.writer(csvfile).writerow([contact_list[0], contact_list[1], contact_list[2]])
 
 
-def write_data(first_name, last_name, telephone) -> None:
-    with open(file_path, 'a') as f:
-        instance = f"{first_name}\n{last_name}\n{telephone}\n"
-        f.write(instance)
+def is_there_file():
+    try:
+        with open(file_path, 'a'):
+            pass
+    except FileNotFoundError:
+        with open(file_path, 'w') as csvfile:
+            csv.writer(csvfile)
+
+
+def rewrite_csv(contact_list: list[list[str]]) -> None:
+    with open(file_path, 'w'):
+        for contact in contact_list:
+            write_csv(contact)
 
 
 def read_data() -> list[list[str]]:

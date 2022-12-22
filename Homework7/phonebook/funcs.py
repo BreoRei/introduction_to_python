@@ -1,12 +1,23 @@
-def record_processing(inner_list: [str]) -> list[dict[str, str]]:
-    item: int = 0
-    list_data: list[dict[str, str]] = []
-    while True:
-        if len(inner_list[0 + item:3 + item])-1 != 0:
-            one_entry: str = inner_list[0 + item:3 + item]
-            final_record: dict[str, str] = {'first_name': one_entry[0], 'last_name': one_entry[1], 'telephon': one_entry[2]}
-            list_data.append(final_record)
-            item += 3
-        else:
-            break
-    return list_data
+
+
+def contact_search(contact_list: list[list[str]], value: str) -> list[list[str]]:
+    inner_list: list = []
+    for contact in contact_list:
+        if value.isdigit():
+            if contact[2] == value:
+                inner_list.append(contact)
+                break
+        elif contact[0] == value or contact[1] == value:
+            inner_list.append(contact)
+    return inner_list
+
+
+def deleting_contact(contact_list: list[list[str]], cont_del_list: list[list[str]]) -> list[list[str]]:
+    for contact in cont_del_list:
+        if contact in contact_list:
+            contact_list.remove(contact)
+    return contact_list
+
+
+
+
